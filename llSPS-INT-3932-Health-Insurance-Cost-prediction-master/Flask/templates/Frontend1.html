@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>HEALTH INSURANCE POLICY</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+.login{
+top: 20%;
+text-align: center;
+font-family: "Arial Black", Gadget, sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+	background: linear-gradient(110deg, #fd3b3b 60%, #b4b4a5 60%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input::placeholder {
+  color:black;
+  
+}
+label, input {
+  font-family: sans-serif;
+}
+input[type=number], select {
+  border: #000;
+  padding: 12px 20px;
+  padding: 10px;
+  font-size: 1.2em;
+  width: 100%;
+}
+
+
+
+</style>
+</head>
+
+<body>
+ <div class="login">
+	 <br>
+	<h1>Health Insurance Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('y_predict')}}"method="post">
+
+
+    	 <input type="number" name="age"  placeholder="How old are you ?" required="required" /><br><br>
+        <select name="sex" required="required" />
+		  <option value="">Select Gender</option>
+		  <option value=0>Female</option>
+         <option value=1>Male</option>
+        </select><br><br>
+		<input type="number" name="bmi" placeholder="Enter BMI" required="required" /><br><br>
+		<input type="number" name="children" placeholder="Number of Children" required="required" /><br><br>
+		<select name="smoker" required="required">
+		  <option value="">Smoker</option>
+		  <option value=1>Yes</option>
+          <option value=0>No</option>
+        </select><br><br>
+		<select name="region" required="required">
+		  <option value="">Select Region</option>
+		  <option value="southwest">Southwest</option>
+		  <option value="southeast">Southeast</option>
+		  <option value="northwest">Northwest</option>
+		  <option value="northeast">Northeast</option>
+		</select><br><br>	
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
+
